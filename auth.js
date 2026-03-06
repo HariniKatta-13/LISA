@@ -348,16 +348,16 @@ function checkPageAccess() {
     const prefix = AuthManager.getPathPrefix();
 
     if (!role) {
-        // Smart redirect for unauthenticated users
-        if (currentPage === 'student.html') {
-            window.location.href = prefix + 'student_login.html';
-        } else if (['lawyer.html', 'chat.html', 'vault.html'].includes(currentPage)) {
-            window.location.href = prefix + 'citizen_login.html';
-        } else {
-            window.location.href = prefix + 'citizen_login.html'; // Default
-        }
-        return;
+    if (currentPage === 'student.html') {
+        window.location.href = prefix + 'student_login.html';
+    } 
+    else if (['lawyer.html', 'chat.html', 'vault.html'].includes(currentPage)) {
+        window.location.href = prefix + 'citizen_login.html';
+    } 
+    else {
+        window.location.href = prefix + 'index.html';
     }
+}
 
     // Check if user has permission for this page
     const config = RoleConfig[role];
@@ -376,3 +376,4 @@ if (typeof document !== 'undefined') {
         updateLandingContext();
     });
 }
+
